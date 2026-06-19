@@ -48,12 +48,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
+    // Refresh the router to update all components
+    router.refresh();
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
     router.push('/');
+    // Refresh the router to update all components
+    router.refresh();
   };
 
   return (

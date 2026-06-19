@@ -21,7 +21,7 @@ export default async function ProviderProfilePage({
   return (
     <main>
       <Header />
-      <section className="px-6 pt-12 pb-8 border-b rule">
+      <section className="px-6 pt-12 pb-8 border-b border-ink-line">
         <div className="mx-auto max-w-5xl">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-signal mb-3">
             {provider.city.toUpperCase()} · {provider.province.toUpperCase()}
@@ -41,8 +41,8 @@ export default async function ProviderProfilePage({
       </section>
 
       <section className="px-6 py-10">
-        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-line border rule mb-10">
-          <div className="bg-ink p-6">
+        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-line border border-ink-line mb-10">
+          <div className="bg-ink-raised p-6">
             <div className="font-mono text-3xl font-semibold text-stock">
               {provider.leadTimeDays}d
             </div>
@@ -50,7 +50,7 @@ export default async function ProviderProfilePage({
               Lead time
             </div>
           </div>
-          <div className="bg-ink p-6">
+          <div className="bg-ink-raised p-6">
             <div className="font-mono text-3xl font-semibold text-stock">
               {provider.capacityPerWeek}
             </div>
@@ -58,7 +58,7 @@ export default async function ProviderProfilePage({
               Jobs / week capacity
             </div>
           </div>
-          <div className="bg-ink p-6">
+          <div className="bg-ink-raised p-6">
             <div className="font-mono text-3xl font-semibold text-signal">
               {provider.rating.toFixed(1)}
             </div>
@@ -84,7 +84,7 @@ export default async function ProviderProfilePage({
                       ? "/services/document-printing"
                       : `/services/${cap}`
                   }
-                  className="border rule px-4 py-2.5 flex items-center gap-2 hover:border-signal transition-colors"
+                  className="border border-ink-line px-4 py-2.5 flex items-center gap-2 hover:border-signal transition-colors"
                 >
                   <span
                     className="h-2.5 w-2.5"

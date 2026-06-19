@@ -17,7 +17,7 @@ export default function OrderConfirmationPage() {
             </h1>
           </div>
 
-          <div className="border rule p-6 space-y-3 font-mono text-xs mb-8">
+          <div className="border border-ink-line bg-ink-raised p-6 space-y-3 font-mono text-xs mb-8">
             {[
               ["Order reference", "PHB-2026-00142"],
               ["Status", "File received · awaiting press"],
@@ -38,7 +38,7 @@ export default function OrderConfirmationPage() {
           <div className="flex gap-4">
             <Link
               href="/"
-              className="flex-1 text-center border rule text-stock font-mono text-xs uppercase tracking-wider py-3 hover:border-stock transition-colors"
+              className="flex-1 text-center border border-ink-line text-stock font-mono text-xs uppercase tracking-wider py-3 hover:border-stock transition-colors"
             >
               Back to home
             </Link>
