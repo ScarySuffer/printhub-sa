@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ─── Dark mode (default) ─────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --ink:        #0b0b0c;
+  --ink-raised: #141415;
+  --ink-line:   #26262a;
+  --ink-overlay: rgba(11, 11, 12, 0.96);
+  --stock:      #f5f3ee;
+  --stock-dim:  #c9c5bb;
+  --board:      #8b8378;
+  color-scheme: dark;
+}
+
+/* ─── Light mode ─────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --ink:        #f5f3ee;
+  --ink-raised: #eceae4;
+  --ink-line:   #d8d4cc;
+  --ink-overlay: rgba(245, 243, 238, 0.96);
+  --stock:      #0b0b0c;
+  --stock-dim:  #3a3835;
+  --board:      #6b6660;
+  color-scheme: light;
+}
+
+/* ─── Signal + confirmed never change between modes ──────────────── */
+:root {
+  --signal:       #ff4d1c;
+  --signal-dim:   #7a2c14;
+  --confirmed:    #1f6f5c;
+  --confirmed-dim:#15463a;
+
+  --font-display:       "Archivo", sans-serif;
+  --font-display-black: "Archivo Black", sans-serif;
+  --font-body:          "IBM Plex Sans", sans-serif;
+  --font-mono:          "IBM Plex Mono", monospace;
+}
+
+/* ─── Tailwind v4 theme tokens ───────────────────────────────────── */
+@theme inline {
+  --color-ink:           var(--ink);
+  --color-ink-raised:    var(--ink-raised);
+  --color-ink-line:      var(--ink-line);
+  --color-ink-overlay:   var(--ink-overlay);
+  --color-stock:         var(--stock);
+  --color-stock-dim:     var(--stock-dim);
+  --color-signal:        var(--signal);
+  --color-signal-dim:    var(--signal-dim);
+  --color-board:         var(--board);
+  --color-confirmed:     var(--confirmed);
+  --color-confirmed-dim: var(--confirmed-dim);
+  --font-display:        var(--font-display);
+  --font-body:           var(--font-body);
+  --font-mono:           var(--font-mono);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--board) var(--ink);
+}
+
+html {
+  background: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+body {
+  background: var(--ink);
+  color: var(--stock);
+  font-family: var(--font-body);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Structural utilities ───────────────────────────────────────── */
+.rule {
+  border-color: var(--ink-line);
+}
+
+/* ─── Ticker marquee ─────────────────────────────────────────────── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 38s linear infinite;
+}
+
+/* ─── Page skeleton shimmer ──────────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--ink-raised) 25%,
+    var(--ink-line)   50%,
+    var(--ink-raised) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
