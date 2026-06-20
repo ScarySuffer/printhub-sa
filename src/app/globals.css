@@ -116,3 +116,69 @@ body {
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
 }
+/* Mobile Nav - Solid Background Fix */
+.mobile-nav-overlay {
+  background-color: #0b0b0c !important;
+  background: #0b0b0c !important;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid #26262a;
+}
+
+.mobile-nav-link {
+  color: #c9c5bb;
+  font-family: monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 20px 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.mobile-nav-link:hover {
+  color: #f5f3ee;
+  background-color: #141415;
+}
+
+.mobile-nav-link-active {
+  color: #f5f3ee !important;
+  background-color: #141415;
+  border-left: 4px solid #ff4d1c;
+}
+
+.mobile-nav-number {
+  color: #666;
+  font-size: 12px;
+  font-family: monospace;
+  min-width: 24px;
+}
+
+.mobile-nav-number-active {
+  color: #ff4d1c !important;
+}
+
+.mobile-nav-cta {
+  background-color: #ff4d1c;
+  color: #0b0b0c;
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 24px;
+  border-radius: 4px;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.mobile-nav-cta:hover {
+  background-color: #f5f3ee;
+  color: #0b0b0c;
+}

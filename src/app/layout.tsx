@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import "./globals.css";
+import "./globals.css";  // ← Remove bootstrap import
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -44,7 +44,9 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <ThemeProvider>
           <AuthProvider>
-            {children}
+            <div className="min-h-screen flex flex-col">
+              {children}
+            </div>
           </AuthProvider>
         </ThemeProvider>
       </body>

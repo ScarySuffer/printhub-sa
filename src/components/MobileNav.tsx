@@ -17,24 +17,15 @@ const NAV_LINKS = [
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { user, logout, isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const getDashboardLink = () => {
     if (!user) return "/dashboard/customer";
-
     switch (user.role) {
-      case "provider":
-        return "/dashboard/provider";
-      case "admin":
-        return "/dashboard/admin";
-      default:
-        return "/dashboard/customer";
+      case "provider": return "/dashboard/provider";
+      case "admin": return "/dashboard/admin";
+      default: return "/dashboard/customer";
     }
   };
 
@@ -50,17 +41,6 @@ export function MobileNav() {
       document.body.style.overflow = "";
     };
   }, [open]);
-
-  if (!mounted) {
-    return (
-      <button
-        aria-label="Menu"
-        className="md:hidden flex items-center justify-center w-8 h-8 text-stock"
-      >
-        <Menu className="h-5 w-5" />
-      </button>
-    );
-  }
 
   return (
     <>
@@ -80,7 +60,8 @@ export function MobileNav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 top-[57px] z-50 bg-ink flex flex-col md:hidden"
+            className="fixed inset-0 top-[57px] z-50 flex flex-col md:hidden border-t border-ink-line"
+            style={{ backgroundColor: '#0b0b0c' }}
           >
             {/* Navigation links — staggered reveal, indexed */}
             <nav className="flex flex-col">
@@ -99,7 +80,7 @@ export function MobileNav() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.05 + i * 0.05, ease: "easeOut" }}
                     className={`relative border-b border-ink-line ${
-                      isActive ? "border-l-4 border-l-signal" : "border-l-4 border-l-transparent"
+                      isActive ? "border-l-4 border-l-signal bg-signal/5" : "border-l-4 border-l-transparent"
                     }`}
                   >
                     <Link
@@ -109,7 +90,7 @@ export function MobileNav() {
                     >
                       <span
                         className={`font-mono text-xs tabular-nums ${
-                          isActive ? "text-signal" : "text-stock-dim"
+                          isActive ? "text-signal" : "text-stock-dim group-hover:text-signal"
                         }`}
                       >
                         {String(i + 1).padStart(2, "0")}
@@ -139,10 +120,10 @@ export function MobileNav() {
                       logout();
                       setOpen(false);
                     }}
-                    className="flex items-center gap-4 px-6 py-5 w-full text-left"
+                    className="flex items-center gap-4 px-6 py-5 w-full text-left group"
                   >
-                    <LogOut className="h-3.5 w-3.5 text-stock-dim" />
-                    <span className="font-mono text-base uppercase tracking-wider text-stock">
+                    <LogOut className="h-3.5 w-3.5 text-stock-dim group-hover:text-signal transition-colors" />
+                    <span className="font-mono text-base uppercase tracking-wider text-stock group-hover:text-signal transition-colors">
                       Logout ({user?.name})
                     </span>
                   </button>
@@ -150,12 +131,12 @@ export function MobileNav() {
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="flex items-baseline gap-4 px-6 py-5"
+                    className="flex items-baseline gap-4 px-6 py-5 group"
                   >
-                    <span className="font-mono text-xs tabular-nums text-stock-dim">
+                    <span className="font-mono text-xs tabular-nums text-stock-dim group-hover:text-signal transition-colors">
                       {String(NAV_LINKS.length + 1).padStart(2, "0")}
                     </span>
-                    <span className="font-mono text-base uppercase tracking-wider text-stock">
+                    <span className="font-mono text-base uppercase tracking-wider text-stock group-hover:text-signal transition-colors">
                       Sign in
                     </span>
                   </Link>
@@ -164,7 +145,7 @@ export function MobileNav() {
             </nav>
 
             {/* Theme toggle */}
-            <div className="px-6 py-5 border-b border-ink-line flex items-center justify-between">
+            <div className="px-6 py-5 border-b border-ink-line flex items-center justify-between bg-ink-raised">
               <span className="font-mono text-xs uppercase tracking-wider text-stock-dim">
                 Display
               </span>
@@ -172,7 +153,7 @@ export function MobileNav() {
             </div>
 
             {/* Bottom CTA */}
-            <div className="mt-auto px-6 py-6 bg-ink">
+            <div className="mt-auto px-6 py-6 border-t border-ink-line" style={{ backgroundColor: '#0b0b0c' }}>
               <Link
                 href="/services"
                 onClick={() => setOpen(false)}

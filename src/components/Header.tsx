@@ -26,13 +26,17 @@ export function Header() {
     }
   };
 
+  // Get user initials for avatar
+  const getUserInitials = () => {
+    if (!user?.name) return '?';
+    return user.name.charAt(0).toUpperCase();
+  };
+
   // While loading, show a neutral header
-  // This matches what the server renders
   if (isLoading) {
     return (
-      <header className="sticky top-0 z-50 border-b bg-ink/95 backdrop-blur-sm dark:bg-ink/95 border-stock/10 dark:border-ink/30">
+      <header className="sticky top-0 z-50 border-b bg-ink/95 backdrop-blur-sm border-stock/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <span className="font-display font-black text-lg sm:text-xl tracking-tight text-stock">
               PRINTHUB
@@ -69,7 +73,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-ink/95 backdrop-blur-sm dark:bg-ink/95 border-stock/10 dark:border-ink/30">
+    <header className="sticky top-0 z-50 border-b bg-ink/95 backdrop-blur-sm border-stock/10">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -105,6 +109,12 @@ export function Header() {
           <ThemeToggle />
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
+              {/* User Avatar */}
+              <div className="w-8 h-8 rounded-full bg-signal/20 flex items-center justify-center border border-signal/30">
+                <span className="text-xs font-bold text-signal">
+                  {getUserInitials()}
+                </span>
+              </div>
               <span className="font-mono text-xs text-stock-dim">
                 {user?.name}
               </span>
