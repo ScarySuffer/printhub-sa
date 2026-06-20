@@ -7,7 +7,7 @@ export function Footer() {
   const { user, isAuthenticated } = useAuth();
 
   return (
-    <footer className="border-t border-ink-line px-6 py-10 mt-auto bg-ink-raised">
+    <footer className="border-t border-ink-line px-6 py-10 mt-auto bg-ink-raised overflow-hidden">
       <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <span className="font-display font-extrabold text-lg text-stock">
